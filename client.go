@@ -78,6 +78,7 @@ func newGethClient(ctx context.Context, path string, genesis *core.Genesis, bloc
 // Start starts geth, but does not wait for the command to exit.
 func (g *gethClient) Start(ctx context.Context, verbose bool) error {
 	fmt.Println("starting client")
+	// TODO: check geth version
 	var (
 		args    = ctx.Value(ARGS).(*Args)
 		options = []string{
@@ -86,6 +87,8 @@ func (g *gethClient) Start(ctx context.Context, verbose bool) error {
 			fmt.Sprintf("--port=%s", NETWORKPORT),
 			"--gcmode=archive",
 			"--nodiscover",
+			"--dev",
+			"--dev.period=0", // 0 = mine only if transaction pending
 			"--http",
 			"--http.api=admin,eth,debug",
 			fmt.Sprintf("--http.addr=%s", HOST),
