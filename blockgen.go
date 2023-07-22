@@ -24,7 +24,7 @@ func genSimpleChain(engine consensus.Engine) (*core.Genesis, []*types.Block, *ty
 		funds    = big.NewInt(0).Mul(big.NewInt(1337), big.NewInt(params.Ether))
 		contract = common.HexToAddress("0000000000000000000000000000000000031ec7")
 		gspec    = &core.Genesis{
-			Config:     params.AllEthashProtocolChanges,
+			Config:     params.AllDevChainProtocolChanges,
 			Alloc:      core.GenesisAlloc{address: {Balance: funds}},
 			BaseFee:    big.NewInt(params.InitialBaseFee),
 			Difficulty: common.Big1,
